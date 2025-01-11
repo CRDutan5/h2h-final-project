@@ -1,68 +1,88 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+* {
+  color: white;
+  margin: 0;
 }
 
 body {
+  font-family: "Inter", sans-serif; /* Choose one of the fonts you imported */
+  background-color: black;
+  color: white;
   margin: 0;
+}
+
+.landing-page-container {
+  /* background: black; */
+  background-color: #2e2d2d;
+
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  /* height: 100vh; */
+  height: calc(100vh - 70px);
+  flex-direction: column;
+  justify-content: center;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.features-container {
+  display: flex;
+  flex: 3;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.image-container {
+  background-image: url("https://media.istockphoto.com/id/614012274/photo/soccer-player-arms-wide-celebrating-after-scoring-goal-in-match.jpg?s=1024x1024&w=is&k=20&c=C2TUOzMcClFH2Wo1pIO2fSM5UfLGM1s9tz7mZOm4IBs=");
+  width: 80%;
+  height: 40%; /* Adjusted height for visibility */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin: auto;
+  margin-bottom: 1%;
+  /* display: flex; */
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.features-list-container {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  margin: auto;
+  height: 100%;
+  padding: 4%;
+}
+
+.feature-card {
+  /* background-color: #2e2d2d; */
+  background-color: rgb(27, 26, 26);
+  border-radius: 5%;
+  border-width: 1px;
+  /* border-color: rgb(156, 154, 154); */
+  border-color: greenyellow;
+  border-style: solid;
+  /* height: 350px; */
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 10px;
+  font-family: "Rubik", sans-serif;
+}
+
+.feature-card p {
+  padding: 5%;
+  font-weight: 400;
+  font-size: large;
+  line-height: 1.6;
+  color: lightgray;
+}
+
+.feature-card h2 {
+  font-size: x-large;
+  /* color: greenyellow; */
+}
+
+.navbar {
+  padding: 25px;
 }
