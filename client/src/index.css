@@ -4,21 +4,21 @@
 }
 
 body {
-  font-family: "Inter", sans-serif; /* Choose one of the fonts you imported */
-  background-color: black;
+  font-family: "Rubik", sans-serif;
+  /* background-color: black; */
   color: white;
   margin: 0;
 }
 
 .landing-page-container {
-  /* background: black; */
   background-color: #2e2d2d;
-
   display: flex;
-  /* height: 100vh; */
-  height: calc(100vh - 70px);
   flex-direction: column;
+  flex-grow: 1;
   justify-content: center;
+  padding: 20px;
+  /* min-height: calc(100vh - 20); */
+  box-sizing: border-box;
 }
 
 .features-container {
@@ -30,24 +30,64 @@ body {
 }
 
 .image-container {
-  background-image: url("https://media.istockphoto.com/id/614012274/photo/soccer-player-arms-wide-celebrating-after-scoring-goal-in-match.jpg?s=1024x1024&w=is&k=20&c=C2TUOzMcClFH2Wo1pIO2fSM5UfLGM1s9tz7mZOm4IBs=");
+  background-image: url("https://images.pexels.com/photos/17896212/pexels-photo-17896212/free-photo-of-soccer-match-seen-from-drone-shot.jpeg");
   width: 80%;
-  height: 40%; /* Adjusted height for visibility */
+  aspect-ratio: 12/4; /* Maintains a 16:9 ratio */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  /* max-height: 500px; */
   margin: auto;
-  margin-bottom: 1%;
-  /* display: flex; */
+  /* margin-bottom: 1%; */
+  margin-top: 1%;
+  display: flex;
+}
+
+.quick-about-container {
+  /* max-height: 50%; */
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  /* padding: 20px; */
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.quick-about-container p {
+  line-height: 1.6;
+  padding: 20px;
+  font-size: larger;
+  font-weight: 400;
+  /* background-color: rgba(0, 0, 0, 0.5); */
+}
+
+.button {
+  background-color: greenyellow;
+  padding: 15px 20px;
+  border-radius: 15px;
+  color: black;
+  font-weight: 600;
+  font-size: large;
+  margin-top: 10px;
+}
+
+.signup-container {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .features-list-container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   width: 80%;
   margin: auto;
   height: 100%;
-  padding: 4%;
+  padding: 2%;
 }
 
 .feature-card {
@@ -59,7 +99,8 @@ body {
   border-color: greenyellow;
   border-style: solid;
   /* height: 350px; */
-  height: 100%;
+  padding: 2%;
+  /* height: 100%; */
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -72,7 +113,7 @@ body {
 
 .feature-card p {
   padding: 5%;
-  font-weight: 400;
+  font-weight: 300;
   font-size: large;
   line-height: 1.6;
   color: lightgray;
@@ -80,9 +121,6 @@ body {
 
 .feature-card h2 {
   font-size: x-large;
+  font-weight: 400;
   /* color: greenyellow; */
-}
-
-.navbar {
-  padding: 25px;
 }

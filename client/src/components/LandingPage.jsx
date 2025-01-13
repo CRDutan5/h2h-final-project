@@ -1,14 +1,23 @@
 import React from "react";
+import Login from "./Login";
 
 export default function LandingPage() {
   return (
     <div className="landing-page-container">
       <div className="image-container">
-        <div>
-          <h1>Hello</h1>
+        <div className="quick-about-container">
+          <p>
+            Connect with players, create teams, schedule matches, and improve
+            your skills in a vibrant soccer community. Whether you're here to
+            compete, have fun, or make new friends, this platform brings soccer
+            enthusiasts together. Join us today and be part of the action!
+          </p>
+          <button className="button" style={{ marginLeft: "15px" }}>
+            Sign Up!
+          </button>
         </div>
-        <div>
-          <h1>Reg</h1>
+        <div className="signup-container">
+          <Login />
         </div>
       </div>
       <div className="features-container">

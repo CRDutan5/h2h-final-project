@@ -1,0 +1,20 @@
+.navbar {
+  background-color: black;
+  display: flex;
+  justify-content: space-between; /* Ensures space between logo and links */
+  align-items: center; /* Vertically aligns items within the navbar */
+  padding: 0 20px; /* Adds some horizontal padding for better spacing */
+  height: 100px; /* Set height for consistency */
+}
+
+.link-container {
+  display: flex;
+  justify-content: flex-end; /* Positions items within link-container */
+  align-items: center; /* Align links vertically */
+  column-gap: 20%;
+}
+
+img {
+  height: 100px;
+  width: 100px;
+}
