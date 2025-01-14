@@ -35,12 +35,9 @@ export const login = async (req, res) => {
         expiresIn: "1h",
       });
 
-      const { password: _, ...userWithoutPassword } = user.toObject();
-
       res.status(200).json({
         message: "User validated!",
         token,
-        user: userWithoutPassword,
       });
     } else {
       res.status(401).json({ error: "Wrong Password" });
@@ -55,7 +52,11 @@ export const getUserInfo = async (req, res) => {
     const userId = req.params.id;
     const user = await User.findById(userId);
     if (user) {
-      res.status(200).json({ message: "User Found!", user });
+      const { email, password, ...userWithoutSensitiveData } = user.toObject();
+
+      res
+        .status(200)
+        .json({ message: "User Found!", user: userWithoutSensitiveData });
     }
   } catch (error) {
     res.status(400).json({ message: "Could not find user" });
