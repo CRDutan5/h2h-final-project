@@ -26,7 +26,7 @@ export const login = async (req, res) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
     if (!user) {
-      res.status(404).json({ error: "No User Found" });
+      return res.status(404).json({ error: "No User Found" });
     }
     const passwordValidated = await bcrypt.compare(password, user.password);
 
@@ -35,15 +35,17 @@ export const login = async (req, res) => {
         expiresIn: "1h",
       });
 
-      res.status(200).json({
+      return res.status(200).json({
         message: "User validated!",
         token,
       });
     } else {
-      res.status(401).json({ error: "Wrong Password" });
+      return res.status(401).json({ error: "Wrong Password" });
     }
   } catch (error) {
-    res.status(500).json({ error: "Error logging in user: ", message: error });
+    return res
+      .status(500)
+      .json({ error: "Error logging in user: ", message: error });
   }
 };
 

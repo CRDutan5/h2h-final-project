@@ -19,6 +19,8 @@ export const UserProvider = ({ children }) => {
   });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const [errorLogin, setErrorLogin] = useState(null);
+
   function handleChange(e) {
     setFormData((prevState) => ({
       ...prevState,
@@ -64,15 +66,66 @@ export const UserProvider = ({ children }) => {
           console.log("Error in user request");
         }
       } else {
-        console.error("Login failed:", res.error || "Unknown error");
+        console.log(res);
+        // Misinformation Handler
+        // {error: "Wrong Password"}
+        // {error: "No User Found"}
+        setErrorLogin(true);
+
+        console.log(res);
       }
     } catch (error) {
       console.error("An error occurred while logging in:", error);
     }
   };
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    console.log(token);
+    if (token) {
+      try {
+        const decoded = JSON.parse(atob(token.split(".")[1]));
+        const currentTime = Math.floor(Date.now() / 1000);
+        if (decoded.exp > currentTime) {
+          setIsLoggedIn(true);
+
+          const userRequest = fetch(
+            `http://localhost:5000/api/auth/user/${decoded.userId}`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          userRequest
+            .then((userRes) => userRes.json())
+            .then((userData) => {
+              setUserData(userData.user);
+            })
+            .catch((error) => console.log("Error fetching user data:", error));
+        } else {
+          setIsLoggedIn(false);
+        }
+      } catch (error) {
+        console.error("Invalid token:", error);
+        setIsLoggedIn(false);
+      }
+    }
+  }, [isLoggedIn]);
+
   return (
-    <UserContext.Provider value={{ formData, handleChange, handleLogin }}>
+    <UserContext.Provider
+      value={{
+        formData,
+        handleChange,
+        handleLogin,
+        userData,
+        isLoggedIn,
+        setIsLoggedIn,
+        errorLogin,
+        setErrorLogin,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );

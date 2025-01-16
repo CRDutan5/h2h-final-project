@@ -1,0 +1,14 @@
+.incorrect-login-container {
+  background-color: rgb(246, 84, 84);
+  padding: 20px;
+  color: red;
+  border-width: 4px;
+  border-style: solid;
+  border-color: red;
+}
+
+.incorrect-login-container p {
+  /* color: red; */
+  font-weight: 400;
+  font-size: large;
+}

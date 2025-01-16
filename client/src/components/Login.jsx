@@ -3,7 +3,7 @@ import "../login.css";
 import { useUser } from "../context/userProvider";
 
 export default function Login() {
-  const { user, handleChange, handleLogin } = useUser();
+  const { userData, handleChange, handleLogin } = useUser();
 
   return (
     <div className="login-main-container">
