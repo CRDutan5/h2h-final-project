@@ -7,6 +7,7 @@ import { Dashboard } from "./components/Dashboard.jsx";
 import { IncorrectLogin } from "./components/errorComponents/incorrectLogin.jsx";
 import { Route, Routes } from "react-router-dom";
 import { Register } from "./components/Register.jsx";
+import { RegisterProvider } from "./context/RegisterProvider.jsx";
 
 export default function App() {
   const { userData, isLoggedIn, errorLogin } = useUser();
@@ -19,7 +20,14 @@ export default function App() {
           path="/"
           element={isLoggedIn ? <Dashboard /> : <LandingPage />}
         />
-        <Route path="/register" element={<Register />} />
+        <Route
+          path="/register"
+          element={
+            <RegisterProvider>
+              <Register />
+            </RegisterProvider>
+          }
+        />
       </Routes>
       <Footer />
     </div>
