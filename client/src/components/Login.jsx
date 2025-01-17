@@ -1,13 +1,25 @@
 import React, { useState } from "react";
 import "../login.css";
 import { useUser } from "../context/userProvider";
+import { handleChange, handleLogin } from "../helper/formFunctions.js";
 
 export default function Login() {
-  const { userData, handleChange, handleLogin } = useUser();
+  const { userData, setErrorLogin, setUserData, setIsLoggedIn } = useUser();
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
 
   return (
     <div className="login-main-container">
-      <form action="" className="form-container" onSubmit={handleLogin}>
+      <form
+        action=""
+        className="form-container"
+        onSubmit={(e) =>
+          handleLogin(e, formData, setErrorLogin, setUserData, setIsLoggedIn)
+        }
+      >
         <h1>Player Login</h1>
         {/* <label htmlFor="email">Email</label> */}
         <input
@@ -15,7 +27,7 @@ export default function Login() {
           id="email"
           name="email"
           placeholder="Email"
-          onChange={handleChange}
+          onChange={(e) => handleChange(e, setFormData)}
           required
         />
         <input
@@ -23,7 +35,7 @@ export default function Login() {
           id="password"
           name="password"
           placeholder="Password"
-          onChange={handleChange}
+          onChange={(e) => handleChange(e, setFormData)}
           required
         />
         <button className="button" type="submit">

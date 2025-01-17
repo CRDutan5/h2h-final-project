@@ -1,62 +1,63 @@
 import React from "react";
 import "../register.css";
-import { useRegister } from "../context/RegisterProvider.jsx";
+import { useRegister } from "../context/RegisterProvider";
+import { handleChange } from "../helper/formFunctions"; // Import handleChange
+import { useUser } from "../context/userProvider";
 
 export const Register = () => {
-  const { createUserAccount, setRegisterForm } = useRegister();
-
-  function handleChange(e) {
-    setRegisterForm((prevState) => ({
-      ...prevState,
-      [e.target.id]: e.target.value,
-    }));
-  }
+  const { createUserAccount, registerForm, setRegisterForm } = useRegister();
 
   return (
     <div className="register-container">
       <div className="register-image-container">
         <img
           src="https://www.cupello.com/application/files/3916/9859/0788/shutterstock_717227614-min.jpg"
-          alt=""
+          alt="Register"
         />
       </div>
       <div className="register-form-container">
-        <form action="" className="register-form">
+        <form
+          action=""
+          className="register-form"
+          onSubmit={(e) => createUserAccount(e)} // Use createUserAccount
+        >
           <h1>Create Account</h1>
           <input
-            type="text"
+            type="email"
             id="email"
             name="email"
             placeholder="Email"
-            onChange={handleChange}
+            value={registerForm.email}
+            onChange={(e) => handleChange(e, setRegisterForm)} // handleChange for updating form state
+            required
           />
           <input
-            type="text"
+            type="password"
             id="password"
             name="password"
             placeholder="Password"
-            onChange={handleChange}
+            value={registerForm.password}
+            onChange={(e) => handleChange(e, setRegisterForm)} // handleChange for updating form state
+            required
           />
           <input
             type="text"
             id="firstName"
             name="firstName"
             placeholder="First Name"
-            onChange={handleChange}
+            value={registerForm.firstName}
+            onChange={(e) => handleChange(e, setRegisterForm)} // handleChange for updating form state
+            required
           />
           <input
             type="text"
             id="lastName"
             name="lastName"
             placeholder="Last Name"
-            onChange={handleChange}
+            value={registerForm.lastName}
+            onChange={(e) => handleChange(e, setRegisterForm)} // handleChange for updating form state
+            required
           />
-          {/* <input
-            type="text"
-            id="zipcode"
-            name="zipcode"
-            placeholder="Zip Code"
-          /> */}
           <button className="button" type="submit">
             Register
           </button>
