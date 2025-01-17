@@ -1,5 +1,6 @@
 import React from "react";
 import Login from "./Login";
+import { Link } from "react-router-dom";
 
 export default function LandingPage() {
   return (
@@ -12,9 +13,11 @@ export default function LandingPage() {
             compete, have fun, or make new friends, this platform brings soccer
             enthusiasts together. Join us today and be part of the action!
           </p>
-          <button className="button" style={{ marginLeft: "15px" }}>
-            Sign Up!
-          </button>
+          <Link to="/register">
+            <button className="button" style={{ marginLeft: "15px" }}>
+              Sign Up!
+            </button>
+          </Link>
         </div>
         <div className="signup-container">
           <Login />

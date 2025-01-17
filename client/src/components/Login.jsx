@@ -16,6 +16,7 @@ export default function Login() {
           name="email"
           placeholder="Email"
           onChange={handleChange}
+          required
         />
         <input
           type="text"
@@ -23,6 +24,7 @@ export default function Login() {
           name="password"
           placeholder="Password"
           onChange={handleChange}
+          required
         />
         <button className="button" type="submit">
           Login

@@ -1,0 +1,49 @@
+.register-container {
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - 30vh);
+}
+
+.register-image-container {
+  width: 50vw;
+  /* padding: 40px; */
+}
+
+.register-image-container,
+.register-form-container {
+  width: 50vw;
+  padding: 40px;
+  box-sizing: border-box; /* Include padding and border within the width */
+}
+
+.register-image-container img {
+  height: 100%;
+  width: 100%;
+}
+
+.register-form-container {
+  border-left-width: 2px;
+  border-left-style: solid;
+  border-color: black;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+
+.register-form input {
+  width: 100%; /* Inputs will span the full width of the form container */
+  border-radius: 15px;
+  padding: 15px;
+  border: 2px solid #ccc;
+  margin-bottom: 10px; /* Add spacing between inputs */
+  box-sizing: border-box; /* Ensure padding doesn't exceed the container width */
+  color: black;
+  font-size: large;
+}
+
+.register-container h1 {
+  color: black;
+}

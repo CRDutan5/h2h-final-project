@@ -11,7 +11,13 @@
   display: flex;
   justify-content: flex-end; /* Positions items within link-container */
   align-items: center; /* Align links vertically */
-  column-gap: 20%;
+  column-gap: 20px; /* Reduced gap to make items appear next to each other */
+}
+
+.welcome-container {
+  display: flex;
+  align-items: center; /* Aligns "Welcome" and first name in a row */
+  gap: 5px; /* Adjusts the gap between Welcome and first name */
 }
 
 img {

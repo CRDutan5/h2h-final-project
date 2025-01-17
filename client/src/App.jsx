@@ -5,14 +5,22 @@ import Footer from "./components/Footer";
 import { UserProvider, useUser } from "./context/userProvider.jsx";
 import { Dashboard } from "./components/Dashboard.jsx";
 import { IncorrectLogin } from "./components/errorComponents/incorrectLogin.jsx";
+import { Route, Routes } from "react-router-dom";
+import { Register } from "./components/Register.jsx";
 
 export default function App() {
   const { userData, isLoggedIn, errorLogin } = useUser();
   return (
-    <div>
+    <div className="">
       <Navbar />
       {errorLogin && <IncorrectLogin />}
-      {isLoggedIn ? <Dashboard /> : <LandingPage />}
+      <Routes>
+        <Route
+          path="/"
+          element={isLoggedIn ? <Dashboard /> : <LandingPage />}
+        />
+        <Route path="/register" element={<Register />} />
+      </Routes>
       <Footer />
     </div>
   );
