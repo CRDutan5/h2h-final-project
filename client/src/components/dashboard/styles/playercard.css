@@ -1,0 +1,22 @@
+.card-container {
+  background-color: rgb(33, 30, 30);
+  border-width: 2px;
+  border-style: solid;
+  /* border-radius: 30px; */
+  border-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 20px;
+  row-gap: 8px;
+  color: white;
+  height: 100%;
+  /* margin: auto; */
+  justify-content: center;
+}
+
+.card-container img {
+  height: 150px;
+  width: 150px;
+}

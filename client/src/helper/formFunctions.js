@@ -60,3 +60,9 @@ export function handleChange(e, setFormState) {
     [e.target.id]: e.target.value,
   }));
 }
+
+export function handleLogout(setIsLoggedIn) {
+  setIsLoggedIn(false);
+  localStorage.removeItem("token");
+  return;
+}

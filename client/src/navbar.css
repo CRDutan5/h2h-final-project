@@ -5,6 +5,7 @@
   align-items: center; /* Vertically aligns items within the navbar */
   padding: 0 20px; /* Adds some horizontal padding for better spacing */
   height: 100px; /* Set height for consistency */
+  /* width: 100vw; */
 }
 
 .link-container {

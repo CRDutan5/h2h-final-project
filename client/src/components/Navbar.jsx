@@ -3,9 +3,10 @@ import logo from "../assets/h2h-proto-logo.png";
 import "../navbar.css";
 import { Link } from "react-router-dom";
 import { useUser } from "../context/userProvider";
+import { handleLogout } from "../helper/formFunctions";
 
 export default function Navbar() {
-  const { isLoggedIn, userData } = useUser();
+  const { isLoggedIn, userData, setIsLoggedIn } = useUser();
   return (
     <div className="navbar">
       <Link to={"/"}>
@@ -22,6 +23,9 @@ export default function Navbar() {
             <p>{userData.firstName}</p>
           </div>
         ) : null}
+        {isLoggedIn && (
+          <p onClick={() => handleLogout(setIsLoggedIn)}>Sign Out</p>
+        )}
       </div>
     </div>
   );

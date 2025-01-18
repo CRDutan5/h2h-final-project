@@ -18,6 +18,26 @@ const userSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  zipcode: {
+    type: Number,
+    require: true,
+  },
+  position: {
+    type: String,
+    require: true,
+  },
+  teamId: {
+    type: Number,
+    default: null,
+  },
+  wins: {
+    type: Number,
+    default: 0,
+  },
+  losses: {
+    type: Number,
+    default: 0,
+  },
 });
 
 const User = mongoose.model("User", userSchema);
