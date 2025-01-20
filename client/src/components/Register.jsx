@@ -58,6 +58,26 @@ export const Register = () => {
             onChange={(e) => handleChange(e, setRegisterForm)} // handleChange for updating form state
             required
           />
+          <input
+            type="zipcode"
+            id="zipcode"
+            name="zipcode"
+            placeholder="Zipcode"
+            value={registerForm.zipcode}
+            onChange={(e) => handleChange(e, setRegisterForm)} // handleChange for updating form state
+            required
+          />
+          <select
+            value={registerForm.position}
+            onChange={(e) => handleChange(e, setRegisterForm)}
+            id="position"
+          >
+            <option value="">Click to Select Your Position</option>
+            <option value="Goalkeeper">Goalkeeper</option>
+            <option value="Defender">Defender</option>
+            <option value="Midfielder">Midfielder</option>
+            <option value="Forward">Forward</option>
+          </select>
           <button className="button" type="submit">
             Register
           </button>

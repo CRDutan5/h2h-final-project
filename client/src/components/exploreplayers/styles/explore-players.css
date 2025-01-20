@@ -1,0 +1,64 @@
+.explore-players-parent-container {
+  background-color: rgb(63, 60, 60);
+  display: flex;
+  min-height: calc(100vh - 30vh);
+  flex-direction: row;
+  /* width: 100vw; */
+  flex-wrap: wrap;
+}
+.explore-child-container {
+  flex: 1;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.explore-child-container input {
+  padding: 15px;
+  width: 80%;
+  border-radius: 15px;
+  font-size: large;
+  margin-bottom: 20px;
+}
+
+.user-list-table {
+  width: 100%;
+  overflow-x: auto;
+  overflow: scroll;
+}
+
+.player-display-child-container {
+  flex: 1;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.list-users-container {
+  background-color: white;
+  color: black;
+  /* border-radius: 15px; */
+  /* padding: 15px; */
+}
+
+.player-div {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+}
+
+.player-div img {
+  margin-right: 20px;
+}
+
+.table-row-head th {
+  padding: 20px;
+  background-color: black;
+}
+
+.table-row-body {
+  background-color: black;
+}
+
+.table-row-body td {
+  padding: 10px;
+}

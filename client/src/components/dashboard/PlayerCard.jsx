@@ -7,17 +7,17 @@ export const PlayerCard = () => {
 
   return (
     <div className="card-container">
-      <p>
+      <h2>
         {userData.firstName} {userData.lastName}
-      </p>
+      </h2>
       <img
-        src="https://i.ytimg.com/vi/GJGbg1TO5FQ/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAQgf5fTkRt3IFk6QhTj4h4-Gm3BA"
+        src="https://media.istockphoto.com/id/855049932/photo/portrait-of-teenage-soccer-player.jpg?s=612x612&w=0&k=20&c=l8-6IrPO-RXw8eWxFwPYrSmXSVqlzISKN0J6dMSIfCo="
         alt=""
       />
-      <p>Team Marvel</p>
-      <p>Position: DPS</p>
-      <p>Wins: 1</p>
-      <p>Losses: 3</p>
+      <p>{userData.teamId ? "Change Me" : "Free Agent"}</p>
+      <p>{userData.position}</p>
+      <p>Current Record: {`${userData.wins} - ${userData.losses}`}</p>
+      {/* <p>Member Since: {userData && userData.createdAt.slice(0, 4)}</p> */}
     </div>
   );
 };

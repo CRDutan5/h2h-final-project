@@ -13,10 +13,13 @@ export default function Navbar() {
         <img src={logo} alt="" />
       </Link>
       <div className="link-container">
-        <p>Links</p>
-        <p>Links</p>
-        <p>Links</p>
-        <p>Links</p>
+        <p>Team Dashboard</p>
+        <p>Team Finder</p>
+        <Link to="/explorePlayers" style={{ color: "white" }}>
+          <p>Explore Players</p>
+        </Link>
+        <p>Matches</p>
+        <p>Account Settings</p>
         {isLoggedIn ? (
           <div className="welcome-container">
             <p>Welcome</p>

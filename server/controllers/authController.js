@@ -4,13 +4,16 @@ import jwt from "jsonwebtoken";
 
 export const register = async (req, res) => {
   try {
-    const { email, firstName, lastName, password } = req.body;
+    const { email, firstName, lastName, password, zipcode, position } =
+      req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({
       email,
       firstName,
       lastName,
       password: hashedPassword,
+      zipcode,
+      position,
     });
     await newUser.save();
     res.status(201).json({ message: "User added!" });
@@ -62,5 +65,18 @@ export const getUserInfo = async (req, res) => {
     }
   } catch (error) {
     res.status(400).json({ message: "Could not find user" });
+  }
+};
+
+export const getAllUsers = async (req, res) => {
+  try {
+    const allUsers = await User.find();
+    if (allUsers.length > 0) {
+      return res
+        .status(200)
+        .json({ message: "Retrieved All Users", users: allUsers });
+    }
+  } catch (error) {
+    res.status(400).json({ message: "Could not get all users" });
   }
 };

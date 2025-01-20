@@ -1,7 +1,7 @@
 import React from "react";
 import { PlayerCard } from "./PlayerCard.jsx";
 import "../../dashboard.css";
-import { EditProfile } from "./EditProfile.jsx";
+import { Achievements } from "./Achievements.jsx";
 import { UpcomingGames } from "./UpcomingGames.jsx";
 
 export const Dashboard = () => {
@@ -15,7 +15,7 @@ export const Dashboard = () => {
           <UpcomingGames />
         </div>
         <div className="edit-profile-container">
-          <EditProfile />
+          <Achievements />
         </div>
       </div>
       <div className="highlight-container">

@@ -15,6 +15,8 @@ export const RegisterProvider = ({ children }) => {
     lastName: "",
     email: "",
     password: "",
+    zipcode: "",
+    position: "",
   });
 
   const { setErrorLogin, setUserData, setIsLoggedIn } = useUser();

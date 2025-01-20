@@ -8,6 +8,7 @@ import { IncorrectLogin } from "./components/errorComponents/incorrectLogin.jsx"
 import { Route, Routes } from "react-router-dom";
 import { Register } from "./components/Register.jsx";
 import { RegisterProvider } from "./context/RegisterProvider.jsx";
+import { ExplorePlayers } from "./components/exploreplayers/ExplorePlayers.jsx";
 
 export default function App() {
   const { userData, isLoggedIn, errorLogin } = useUser();
@@ -28,6 +29,7 @@ export default function App() {
             </RegisterProvider>
           }
         />
+        <Route path="/explorePlayers" element={<ExplorePlayers />} />
       </Routes>
       <Footer />
     </div>
