@@ -27,8 +27,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       require: true,
     },
+    // In your User model
     teamId: {
-      type: Number,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Team",
       default: null,
     },
     wins: {

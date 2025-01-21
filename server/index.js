@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import dbConnect from "./config/dbConnect.js";
 import cors from "cors";
 import authRouter from "./routes/authRoutes.js";
+import teamRouter from "./routes/teamRoutes.js";
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ const corsOption = {
 
 app.use(cors(corsOption));
 app.use("/api/auth", authRouter);
+app.use("/api/teams", teamRouter);
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
