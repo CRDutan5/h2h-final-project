@@ -9,6 +9,7 @@ import { Route, Routes } from "react-router-dom";
 import { Register } from "./components/Register.jsx";
 import { RegisterProvider } from "./context/RegisterProvider.jsx";
 import { ExplorePlayers } from "./components/exploreplayers/ExplorePlayers.jsx";
+import { AccountSettings } from "./components/accountSettings/AccountSettings.jsx";
 
 export default function App() {
   const { userData, isLoggedIn, errorLogin } = useUser();
@@ -30,6 +31,10 @@ export default function App() {
           }
         />
         <Route path="/explorePlayers" element={<ExplorePlayers />} />
+        <Route
+          path="/accountSettings"
+          element={isLoggedIn && <AccountSettings />}
+        />
       </Routes>
       <Footer />
     </div>

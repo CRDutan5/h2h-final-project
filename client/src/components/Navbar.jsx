@@ -19,13 +19,17 @@ export default function Navbar() {
           <p>Explore Players</p>
         </Link>
         <p>Matches</p>
-        <p>Account Settings</p>
         {isLoggedIn ? (
           <div className="welcome-container">
             <p>Welcome</p>
             <p>{userData.firstName}</p>
           </div>
         ) : null}
+        {isLoggedIn && (
+          <Link to="/accountSettings">
+            <p>Account Settings</p>
+          </Link>
+        )}
         {isLoggedIn && (
           <p onClick={() => handleLogout(setIsLoggedIn)}>Sign Out</p>
         )}

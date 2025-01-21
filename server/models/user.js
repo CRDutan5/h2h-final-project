@@ -41,6 +41,23 @@ const userSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    twoFactorEnabled: {
+      type: Boolean,
+      default: false,
+    },
+    // twoFactorEmail: {
+    //   type: String,
+    // },
+    otp: {
+      type: String,
+    },
+    otpExpiration: {
+      type: Date,
+    },
+    otpUsed: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );
