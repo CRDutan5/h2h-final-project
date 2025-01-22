@@ -54,9 +54,16 @@ const userSchema = new mongoose.Schema(
     otpExpiration: {
       type: Date,
     },
-    otpUsed: {
-      type: Boolean,
-      default: false,
+    // otpUsed: {
+    //   type: Boolean,
+    //   default: false,
+    // },
+    otpFailedAttempts: {
+      type: Number,
+      default: 0,
+    },
+    lockoutUntil: {
+      type: Date,
     },
   },
   { timestamps: true }

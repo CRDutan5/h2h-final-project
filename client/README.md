@@ -11,3 +11,4 @@ Currently, two official plugins are available:
 
 - The way JWT is stored
 - The way I generate OTP can be improved
+- Definitely need to optimize search for players on the frontend, when scaling loading all the users will be too slow
