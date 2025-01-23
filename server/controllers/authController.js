@@ -1,6 +1,7 @@
 import User from "../models/user.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { sendOTP } from "./2FAController.js";
 
 export const register = async (req, res) => {
   try {
@@ -24,31 +25,37 @@ export const register = async (req, res) => {
   }
 };
 // Future note may need to change how I refresh the token
+// 1. Login Endpoint
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }); // Note: Need object with email property
+
     if (!user) {
-      return res.status(404).json({ error: "No User Found" });
+      return res.status(404).json({ message: "Couldn't find user" });
     }
-    const passwordValidated = await bcrypt.compare(password, user.password);
 
-    if (passwordValidated) {
-      const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-        expiresIn: "1h",
-      });
+    const comparedPassword = await bcrypt.compare(password, user.password);
 
-      return res.status(200).json({
-        message: "User validated!",
-        token,
-      });
-    } else {
+    if (!comparedPassword) {
       return res.status(401).json({ error: "Wrong Password" });
     }
+
+    if (user.twoFactorEnabled) {
+      await sendOTP(req, res);
+      return;
+    }
+
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+
+    return res.status(200).json({
+      message: "Login successful",
+      token,
+    });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ error: "Error logging in user: ", message: error });
+    return res.status(500).json({ error: "Login failed" });
   }
 };
 
