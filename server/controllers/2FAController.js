@@ -2,12 +2,15 @@ import { generateOTP, generateOTPEmail } from "../helper/2faFunctions.js";
 import User from "../models/user.js";
 import jwt from "jsonwebtoken";
 
+// In the front end if the user passes the otp, then the token will be returned and we will set that to local storage, decode it grab the user id and set the userdetails to the decoded token by fetching it
 // Function to send OTP
 // http://localhost:5000/api/auth/login
 // {
 //   "email": "carlitosrdutan@gmail.com",
 // "password": "123456"
 // }
+
+// Have to add that the user cant request otp's until lockdown is cleared
 export const sendOTP = async (req, res) => {
   try {
     const { email } = req.body;
@@ -48,8 +51,17 @@ export const verifyOTP = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
+    if (user.lockoutUntil && Date.now() < user.lockoutUntil) {
+      const remainingTime = Math.ceil((user.lockoutUntil - new Date()) / 60000);
+      return res.status(429).json({
+        message: `Too many failed attempts. Please try again after ${remainingTime} minutes.`,
+      });
+    }
+
     if (inputOtp === user.otp) {
       user.otp = null;
+      user.otpFailedAttempts = 0;
+      user.lockoutUntil = null;
       await user.save();
       const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
         expiresIn: "1h",
@@ -59,9 +71,18 @@ export const verifyOTP = async (req, res) => {
         token,
       });
     } else {
-      user.otp = null;
+      user.otpFailedAttempts = (user.otpFailedAttempts || 0) + 1;
+      if (user.otpFailedAttempts >= 3) {
+        user.lockoutUntil = new Date(Date.now() + 5 * 60 * 1000);
+        user.otp = null;
+        user.otpFailedAttempts = 0;
+        await user.save();
+        return res.status(401).json({
+          message: `Too many failed attempts`,
+        });
+      }
       await user.save();
-      return res.status(404).json({ message: "Wrong OTP" });
+      return res.status(401).json({ message: "Wrong OTP" });
     }
   } catch (error) {
     console.error("Error verifying OTP: ", error);

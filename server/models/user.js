@@ -58,13 +58,13 @@ const userSchema = new mongoose.Schema(
     //   type: Boolean,
     //   default: false,
     // },
-    // otpFailedAttempts: {
-    //   type: Number,
-    //   default: 0,
-    // },
-    // lockoutUntil: {
-    //   type: Date,
-    // },
+    otpFailedAttempts: {
+      type: Number,
+      default: 0,
+    },
+    lockoutUntil: {
+      type: Date,
+    },
   },
   { timestamps: true }
 );
