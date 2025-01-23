@@ -10,7 +10,9 @@ import jwt from "jsonwebtoken";
 // "password": "123456"
 // }
 
-// Have to add that the user cant request otp's until lockdown is cleared
+// Have to add that the user cant request otp's until lockdown is cleared [DONE]
+// I need to maybe that checks if an otp has been sent already
+// If a user has sent one and tried twice to enter otp. If they manage to override it in the frontend, the attempts still counters it by remaining the same count
 export const sendOTP = async (req, res) => {
   try {
     const { email } = req.body;
@@ -20,9 +22,16 @@ export const sendOTP = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
+    if (user.lockoutUntil && Date.now() < user.lockoutUntil) {
+      return res.status(401).json({
+        message: "User cannot request another OTP until cool down has cleared",
+      });
+    }
+
     const otp = generateOTP();
 
     user.otp = otp;
+    user.lockoutUntil = null;
 
     await user.save();
     await generateOTPEmail(otp, email);
