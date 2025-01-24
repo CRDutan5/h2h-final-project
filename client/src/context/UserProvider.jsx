@@ -16,6 +16,8 @@ export const UserProvider = ({ children }) => {
 
   const [errorLogin, setErrorLogin] = useState(null);
 
+  const [toggleTwoFactor, setToggleTwoFactor] = useState(false);
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     console.log(token);
@@ -59,6 +61,8 @@ export const UserProvider = ({ children }) => {
         setIsLoggedIn,
         errorLogin,
         setErrorLogin,
+        toggleTwoFactor,
+        setToggleTwoFactor,
       }}
     >
       {children}

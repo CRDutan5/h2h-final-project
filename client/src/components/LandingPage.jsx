@@ -1,8 +1,10 @@
 import React from "react";
 import Login from "./Login";
 import { Link } from "react-router-dom";
+import { useUser } from "../context/userProvider";
 
 export default function LandingPage() {
+  const { toggleTwoFactor } = useUser();
   return (
     <div className="landing-page-container">
       <div className="image-container">
