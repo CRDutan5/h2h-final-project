@@ -18,6 +18,11 @@ export const UserProvider = ({ children }) => {
 
   const [toggleTwoFactor, setToggleTwoFactor] = useState(false);
 
+  const [loginFormData, setLoginFormData] = useState({
+    email: "",
+    password: "",
+  });
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     console.log(token);
@@ -63,6 +68,8 @@ export const UserProvider = ({ children }) => {
         setErrorLogin,
         toggleTwoFactor,
         setToggleTwoFactor,
+        loginFormData,
+        setLoginFormData,
       }}
     >
       {children}

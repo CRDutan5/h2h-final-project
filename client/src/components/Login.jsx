@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "../login.css";
 import { useUser } from "../context/userProvider";
-import { handleChange, handleLogin } from "../helper/formFunctions.js";
+// import { handleChange, handleLogin } from "../helper/formFunctions.js";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const {
@@ -13,21 +14,20 @@ export default function Login() {
     setTwoFactorModal,
     toggleTwoFactor,
     setToggleTwoFactor,
+    loginFormData,
+    setLoginFormData,
   } = useUser();
 
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const navigate = useNavigate();
 
-  const handleLoginSubmit = async (e, inputData) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
     try {
       // Sending the login request
       const response = await fetch(`http://localhost:5000/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(inputData),
+        body: JSON.stringify(loginFormData),
       });
 
       // Parsing the response body
@@ -37,10 +37,10 @@ export default function Login() {
       // Handling the 2FA scenario
       if (data.requiresOTP) {
         setToggleTwoFactor(true);
+        navigate("/verification");
       }
       // Handling wrong credentials (401 Unauthorized)
-      else if (data.status === 401) {
-        console.log("Wrong Credentials");
+      else if (response.status === 401) {
         setErrorLogin(true);
       } else {
         // If login is successful, store the token in localStorage
@@ -78,15 +78,18 @@ export default function Login() {
     }
   };
 
+  const handleLoginFormChange = (e) => {
+    setLoginFormData((prevState) => ({
+      ...prevState,
+      [e.target.id]: e.target.value,
+    }));
+  };
+
   console.log(toggleTwoFactor);
 
   return (
     <div className="login-main-container">
-      <form
-        action=""
-        className="form-container"
-        onSubmit={(e) => handleLoginSubmit(e, formData)}
-      >
+      <form action="" className="form-container" onSubmit={handleLoginSubmit}>
         <h1>Player Login</h1>
         {/* <label htmlFor="email">Email</label> */}
         <input
@@ -94,7 +97,7 @@ export default function Login() {
           id="email"
           name="email"
           placeholder="Email"
-          onChange={(e) => handleChange(e, setFormData)}
+          onChange={handleLoginFormChange}
           required
         />
         <input
@@ -102,7 +105,7 @@ export default function Login() {
           id="password"
           name="password"
           placeholder="Password"
-          onChange={(e) => handleChange(e, setFormData)}
+          onChange={handleLoginFormChange}
           required
         />
         <button className="button" type="submit">
