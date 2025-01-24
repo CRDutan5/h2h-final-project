@@ -10,9 +10,10 @@ import { Register } from "./components/Register.jsx";
 import { RegisterProvider } from "./context/RegisterProvider.jsx";
 import { ExplorePlayers } from "./components/exploreplayers/ExplorePlayers.jsx";
 import { AccountSettings } from "./components/accountSettings/AccountSettings.jsx";
+import { TwoFactorVerification } from "./TwoFactorVerification.jsx";
 
 export default function App() {
-  const { userData, isLoggedIn, errorLogin } = useUser();
+  const { userData, isLoggedIn, errorLogin, toggleTwoFactor } = useUser();
   return (
     <div className="">
       <Navbar />
@@ -34,6 +35,10 @@ export default function App() {
         <Route
           path="/accountSettings"
           element={isLoggedIn && <AccountSettings />}
+        />
+        <Route
+          path="/verification"
+          element={toggleTwoFactor && <TwoFactorVerification />}
         />
       </Routes>
       <Footer />

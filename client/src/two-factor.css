@@ -1,0 +1,37 @@
+.two-factor-main-container {
+  background-color: grey;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 25vh);
+  width: 100vw;
+  row-gap: 25px;
+}
+
+.two-factor-main-container form {
+  /* width: 75%; */
+  display: flex;
+  flex-direction: column;
+  row-gap: 25px;
+}
+
+.two-factor-main-container input {
+  padding: 20px;
+  width: 30px;
+  margin: 0px 5px;
+  font-size: large;
+}
+
+.two-factor-main-container button {
+  background-color: greenyellow;
+  padding: 15px;
+  font-size: large;
+  border-radius: 15px;
+  font-weight: 600;
+}
+
+.two-factor-main-container button:hover {
+  background-color: rgb(5, 155, 12);
+  cursor: pointer;
+}

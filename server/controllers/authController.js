@@ -41,6 +41,12 @@ export const login = async (req, res) => {
       return res.status(401).json({ error: "Wrong Password" });
     }
 
+    if (user.lockoutUntil && Date.now() < user.lockoutUntil) {
+      return res
+        .status(401)
+        .json({ message: "User has to wait cool down before logging in" });
+    }
+
     if (user.twoFactorEnabled) {
       await sendOTP(req, res);
       return;
