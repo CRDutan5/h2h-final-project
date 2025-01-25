@@ -32,13 +32,13 @@ export const login = async (req, res) => {
     const user = await User.findOne({ email }); // Note: Need object with email property
 
     if (!user) {
-      return res.status(404).json({ message: "Couldn't find user" });
+      return res.status(404).json({ message: "No user found" });
     }
 
     const comparedPassword = await bcrypt.compare(password, user.password);
 
     if (!comparedPassword) {
-      return res.status(401).json({ error: "Wrong Password" });
+      return res.status(401).json({ message: "Wrong Password" });
     }
 
     if (user.lockoutUntil && Date.now() < user.lockoutUntil) {
