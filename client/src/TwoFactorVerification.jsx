@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 export const TwoFactorVerification = () => {
   const [inputOtp, setInputOtp] = useState(["", "", "", "", "", ""]);
   const [errorMessage, setErrorMessage] = useState("");
+  const [sentOTPResponse, setSentOTPResponse] = useState("");
 
   const { loginFormData, setIsLoggedIn } = useUser();
 
@@ -38,6 +39,7 @@ export const TwoFactorVerification = () => {
 
   const handleVerification = async (e) => {
     e.preventDefault();
+    setSentOTPResponse("");
     try {
       const response = await fetch(
         `http://localhost:5000/api/auth/2fa/verify`,
@@ -59,12 +61,10 @@ export const TwoFactorVerification = () => {
         navigate("/");
         console.log("user authenticated!!!!");
       } else {
-        // alert(data.message);
         setErrorMessage(data.message);
       }
     } catch (error) {
       console.error("Verification Failed", error);
-      alert("Something went wrong");
     }
   };
 
@@ -79,11 +79,12 @@ export const TwoFactorVerification = () => {
       });
       const data = await response.json();
       if (response.status === 401) {
-        alert("User has to wait cool down");
+        // alert("User has to wait cool down");
       }
       if (response.status === 200) {
-        alert("New OTP has been sent");
+        // alert("New OTP has been sent");
       }
+      setSentOTPResponse(data.message);
     } catch (error) {
       console.error(error);
     }
@@ -94,6 +95,7 @@ export const TwoFactorVerification = () => {
       <h1>Two Factor Verification</h1>
       <p>An email has been sent containing the OTP. Please enter it below</p>
       {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+      {sentOTPResponse && <p style={{ color: "black" }}>{sentOTPResponse}</p>}
       <form onSubmit={handleVerification}>
         <div>
           <input
