@@ -49,7 +49,7 @@ export const TwoFactorVerification = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            email: loginFormData.email,
+            email: localStorage.getItem("loginFormEmail"),
             inputOtp: inputOtp.join(""),
           }),
         }
@@ -58,6 +58,8 @@ export const TwoFactorVerification = () => {
       if (response.status === 200) {
         localStorage.setItem("token", data.token);
         setIsLoggedIn(true);
+        localStorage.removeItem("inTwoFactorFlow");
+        localStorage.removeItem("loginFormEmail");
         navigate("/");
         console.log("user authenticated!!!!");
       } else {

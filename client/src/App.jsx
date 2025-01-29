@@ -5,7 +5,7 @@ import Footer from "./components/Footer";
 import { UserProvider, useUser } from "./context/userProvider.jsx";
 import { Dashboard } from "./components/dashboard/Dashboard.jsx";
 import { IncorrectLogin } from "./components/errorComponents/incorrectLogin.jsx";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { Register } from "./components/Register.jsx";
 import { RegisterProvider } from "./context/RegisterProvider.jsx";
 import { ExplorePlayers } from "./components/exploreplayers/ExplorePlayers.jsx";
@@ -14,6 +14,7 @@ import { TwoFactorVerification } from "./TwoFactorVerification.jsx";
 
 export default function App() {
   const { userData, isLoggedIn, errorLogin, toggleTwoFactor } = useUser();
+
   return (
     <div className="">
       <Navbar />
@@ -38,7 +39,13 @@ export default function App() {
         />
         <Route
           path="/verification"
-          element={toggleTwoFactor && <TwoFactorVerification />}
+          element={
+            localStorage.getItem("inTwoFactorFlow") ? (
+              <TwoFactorVerification />
+            ) : (
+              <Navigate to="/" />
+            )
+          }
         />
       </Routes>
       <Footer />
