@@ -98,3 +98,22 @@ export const verifyOTP = async (req, res) => {
     return res.status(500).json({ message: "Failed to verify OTP" });
   }
 };
+
+export const removeOTP = async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await User.findOneAndUpdate(
+      { email },
+      { $set: { otp: null, otpFailedAttempts: 0 } },
+      { $new: true }
+    );
+
+    if (!user) {
+      return res.status(404).json({ message: "No User Found" });
+    }
+
+    return res.status(200).json({ message: "OTP removed successfully" });
+  } catch (error) {
+    console.error("Couldnt remove Otp:", error);
+  }
+};

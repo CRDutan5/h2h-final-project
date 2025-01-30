@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../login.css";
 import { useUser } from "../context/userProvider";
 // import { handleChange, handleLogin } from "../helper/formFunctions.js";
@@ -35,6 +35,8 @@ export default function Login() {
 
       if (data.requiresOTP) {
         setToggleTwoFactor(true);
+        localStorage.setItem("inTwoFactorFlow", "true"); // Store 2FA flag
+        localStorage.setItem("loginFormEmail", loginFormData.email);
         navigate("/verification");
       } else if (response.status === 401 || response.status === 404) {
         setErrorMessage(data.message);
@@ -74,7 +76,14 @@ export default function Login() {
     }));
   };
 
-  console.log(toggleTwoFactor);
+  useEffect(() => {
+    // If user is in the 2FA flow, ensure they stay on the verification page
+    if (localStorage.getItem("inTwoFactorFlow")) {
+      navigate("/verification");
+    }
+  }, [navigate]);
+
+  // console.log(toggleTwoFactor);
 
   return (
     <div className="login-main-container">

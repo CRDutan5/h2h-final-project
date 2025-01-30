@@ -1,12 +1,20 @@
 import React from "react";
 import logo from "../assets/h2h-proto-logo.png";
 import "../navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../context/userProvider";
-import { handleLogout } from "../helper/formFunctions";
 
 export default function Navbar() {
   const { isLoggedIn, userData, setIsLoggedIn } = useUser();
+
+  const navigate = useNavigate();
+
+  function handleLogout(setIsLoggedIn) {
+    setIsLoggedIn(false);
+    localStorage.removeItem("token");
+    navigate("/");
+    return;
+  }
   return (
     <div className="navbar">
       <Link to={"/"}>

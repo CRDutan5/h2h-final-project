@@ -5,12 +5,6 @@ export function handleChange(e, setFormState) {
   }));
 }
 
-export function handleLogout(setIsLoggedIn) {
-  setIsLoggedIn(false);
-  localStorage.removeItem("token");
-  return;
-}
-
 export const handleLogin = async (e, inputData) => {
   // e.preventDefault();
   // try {
