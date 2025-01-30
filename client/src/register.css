@@ -57,3 +57,26 @@
 .register-container h1 {
   color: black;
 }
+
+.fieldset-container * {
+  color: black;
+}
+
+.fieldset-child-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: center; */
+  column-gap: 8px;
+}
+
+.fieldset-child-container input {
+  margin: 0; /* Reset margin */
+  padding: 0; /* Reset padding */
+  width: auto; /* Reset the width to auto or adjust as needed */
+  /* Add any additional specific styles you need */
+}
+
+fieldset {
+  border: none;
+}

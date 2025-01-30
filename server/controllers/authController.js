@@ -5,8 +5,15 @@ import { sendOTP } from "./2FAController.js";
 
 export const register = async (req, res) => {
   try {
-    const { email, firstName, lastName, password, zipcode, position } =
-      req.body;
+    const {
+      email,
+      firstName,
+      lastName,
+      password,
+      zipcode,
+      position,
+      twoFactorEnabled,
+    } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({
       email,
@@ -15,6 +22,7 @@ export const register = async (req, res) => {
       password: hashedPassword,
       zipcode,
       position,
+      twoFactorEnabled,
     });
     await newUser.save();
     res.status(201).json({ message: "User added!" });
@@ -96,8 +104,16 @@ export const getAllUsers = async (req, res) => {
 
 export const updateUser = async (req, res) => {
   try {
-    const { firstName, lastName, zipcode, position, teamId } = req.body;
-    const updatedFields = { firstName, lastName, zipcode, position, teamId };
+    const { firstName, lastName, zipcode, position, teamId, twoFactorEnabled } =
+      req.body;
+    const updatedFields = {
+      firstName,
+      lastName,
+      zipcode,
+      position,
+      teamId,
+      twoFactorEnabled,
+    };
 
     // May need to use bcrypt later for password hashing
     const updatedUser = await User.findByIdAndUpdate(
