@@ -92,6 +92,39 @@ export const TwoFactorVerification = () => {
     }
   };
 
+  const handleBackToLogin = async () => {
+    try {
+      const email = localStorage.getItem("loginFormEmail");
+
+      if (!email) {
+        console.error("No email found in localStorage.");
+        return;
+      }
+
+      const response = await fetch(
+        `http://localhost:5000/api/auth/2fa/remove`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        }
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Error:", errorData.message || "Something went wrong");
+        return;
+      }
+      localStorage.removeItem("inTwoFactorFlow");
+      localStorage.removeItem("loginFormEmail");
+      navigate("/");
+    } catch (error) {
+      console.error("Network error:", error);
+    }
+  };
+
   return (
     <div className="two-factor-main-container">
       <h1>Two Factor Verification</h1>
@@ -157,6 +190,9 @@ export const TwoFactorVerification = () => {
         </div>
         <button type="submit">Verify</button>
       </form>
+      <p onClick={handleBackToLogin} style={{ textDecoration: "underline" }}>
+        Click here to go back!
+      </p>
       <button onClick={requestNewOneTimePin}>Request New OTP</button>
     </div>
   );
