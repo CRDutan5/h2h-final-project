@@ -1,11 +1,23 @@
 import React from "react";
 import "../register.css";
 import { useRegister } from "../context/RegisterProvider";
-import { handleChange } from "../helper/formFunctions"; // Import handleChange
 import { useUser } from "../context/userProvider";
 
 export const Register = () => {
   const { createUserAccount, registerForm, setRegisterForm } = useRegister();
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+
+    const newValue = type === "checkbox" ? checked : value;
+
+    setRegisterForm((prevForm) => ({
+      ...prevForm,
+      [name]: newValue,
+    }));
+  };
+
+  console.log(registerForm);
 
   return (
     <div className="register-container">
@@ -19,7 +31,7 @@ export const Register = () => {
         <form
           action=""
           className="register-form"
-          onSubmit={(e) => createUserAccount(e)} // Use createUserAccount
+          onSubmit={(e) => createUserAccount(e)}
         >
           <h1>Create Account</h1>
           <input
@@ -28,7 +40,7 @@ export const Register = () => {
             name="email"
             placeholder="Email"
             value={registerForm.email}
-            onChange={(e) => handleChange(e, setRegisterForm)} // handleChange for updating form state
+            onChange={handleChange}
             required
           />
           <input
@@ -37,7 +49,7 @@ export const Register = () => {
             name="password"
             placeholder="Password"
             value={registerForm.password}
-            onChange={(e) => handleChange(e, setRegisterForm)} // handleChange for updating form state
+            onChange={handleChange}
             required
           />
           <input
@@ -46,7 +58,7 @@ export const Register = () => {
             name="firstName"
             placeholder="First Name"
             value={registerForm.firstName}
-            onChange={(e) => handleChange(e, setRegisterForm)} // handleChange for updating form state
+            onChange={handleChange}
             required
           />
           <input
@@ -55,7 +67,7 @@ export const Register = () => {
             name="lastName"
             placeholder="Last Name"
             value={registerForm.lastName}
-            onChange={(e) => handleChange(e, setRegisterForm)} // handleChange for updating form state
+            onChange={handleChange}
             required
           />
           <input
@@ -64,13 +76,14 @@ export const Register = () => {
             name="zipcode"
             placeholder="Zipcode"
             value={registerForm.zipcode}
-            onChange={(e) => handleChange(e, setRegisterForm)} // handleChange for updating form state
+            onChange={handleChange}
             required
           />
           <select
             value={registerForm.position}
-            onChange={(e) => handleChange(e, setRegisterForm)}
+            onChange={handleChange}
             id="position"
+            name="position"
           >
             <option value="">Click to Select Your Position</option>
             <option value="Goalkeeper">Goalkeeper</option>
@@ -78,6 +91,20 @@ export const Register = () => {
             <option value="Midfielder">Midfielder</option>
             <option value="Forward">Forward</option>
           </select>
+          <fieldset className="fieldset-container">
+            <div className="fieldset-child-container">
+              <input
+                type="checkbox"
+                id="twoFactorEnabled"
+                name="twoFactorEnabled"
+                checked={registerForm["twoFactorEnabled"] || false}
+                onChange={handleChange}
+              />
+              <label htmlFor="twoFactorEnabled">
+                Enable Two Factor Authentication
+              </label>
+            </div>
+          </fieldset>
           <button className="button" type="submit">
             Register
           </button>

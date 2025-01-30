@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { useUser } from "./userProvider";
-import { handleLogin } from "../helper/formFunctions";
 import { useNavigate } from "react-router-dom";
 
 const RegisterContext = React.createContext();
@@ -31,22 +30,9 @@ export const RegisterProvider = ({ children }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(registerForm),
       });
-
       if (response.ok) {
-        const res = await response.json();
-        const loginResponse = await handleLogin(
-          e,
-          { email: registerForm.email, password: registerForm.password }, // pass form data for login
-          setErrorLogin,
-          setUserData,
-          setIsLoggedIn
-        );
-        if (loginResponse) {
-          console.log("Login Successful after Registration!");
-          navigate("/");
-        } else {
-          console.log("Login Failed after Registration");
-        }
+        alert("Successfully Created Account! Redirected to login!");
+        navigate("/");
       } else {
         console.error("Could not create user due to invalid credentials");
         setErrorLogin(true);
