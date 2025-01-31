@@ -88,9 +88,9 @@ export const ExplorePlayers = () => {
           </table>
         </div>
       </div>
-      <div className="player-display-child-container">
+      {/* <div className="player-display-child-container">
         <h1>Yerrr</h1>
-      </div>
+      </div> */}
     </div>
   );
 };

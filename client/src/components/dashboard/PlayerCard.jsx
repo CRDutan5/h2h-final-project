@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useUser } from "../../context/userProvider";
 import "./styles/playercard.css";
 
-export const PlayerCard = () => {
+export const PlayerCard = ({ isCurrentUserPlayerCard }) => {
   const { userData } = useUser();
+  // const [currentPlayer, setCurrentPlayer] = useState(() => {
+  //   isCurrentUserPlayerCard ? userData : null
+  // });
+
+  // useEffect(() => {
+  //   if (isCurrentUserPlayerCard === false) {
+  //     const fetchUserData = async () => {
+  //       const response = await fetch (`http://localhost:5000/api/auth/user/:id`, {
+  //         method: "GET",
+  //         headers: {
+  //           "Content-Type": "application/json"
+  //         }
+  //       })
+  //     }
+  //   }
+
+  // }, [])
 
   return (
     <div className="card-container">

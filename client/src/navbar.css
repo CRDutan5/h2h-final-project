@@ -9,8 +9,10 @@
   flex-direction: row;
   background-color: black;
   justify-content: space-between;
-  /* width: 100vw; */
+  position: relative;
+  z-index: 1000;
 }
+
 .link-container {
   display: flex;
   flex-direction: row;
@@ -23,4 +25,72 @@
 img {
   height: 100px;
   width: 100px;
+}
+
+/* Dropdown Styles */
+.dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdown-trigger {
+  margin: 0;
+  padding: 10px 0;
+}
+
+.dropdown-trigger:hover {
+  color: greenyellow;
+}
+
+/* Create a padding bridge between trigger and content */
+.dropdown::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 20px; /* This creates a hoverable area between trigger and content */
+}
+
+.dropdown-content {
+  position: absolute;
+  top: calc(100% + 5px); /* Adjusted to account for the bridge */
+  right: 0;
+  background-color: black;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 8px 0;
+  visibility: hidden; /* Hide by default */
+  opacity: 0;
+  transition: all 0.2s ease; /* Smooth transition for appearance */
+}
+
+/* Show dropdown when hovering over the dropdown container */
+.dropdown:hover .dropdown-content {
+  visibility: visible;
+  opacity: 1;
+}
+
+.dropdown-content a {
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content p {
+  padding: 8px 16px;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.dropdown-content p:hover {
+  background-color: #333;
+}
+
+/* Ensure links inherit text color */
+.link-container a {
+  text-decoration: none;
+  color: inherit;
 }
