@@ -1,24 +1,23 @@
-.navbar {
-  background-color: black;
-  display: flex;
-  justify-content: space-between; /* Ensures space between logo and links */
-  align-items: center; /* Vertically aligns items within the navbar */
-  padding: 0 20px; /* Adds some horizontal padding for better spacing */
-  height: 100px; /* Set height for consistency */
-  /* width: 100vw; */
-}
-
-.link-container {
-  display: flex;
-  justify-content: flex-end; /* Positions items within link-container */
-  align-items: center; /* Align links vertically */
-  column-gap: 20px; /* Reduced gap to make items appear next to each other */
-}
-
 .welcome-container {
   display: flex;
-  align-items: center; /* Aligns "Welcome" and first name in a row */
-  gap: 5px; /* Adjusts the gap between Welcome and first name */
+  align-items: center;
+  gap: 5px;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  background-color: black;
+  justify-content: space-between;
+  /* width: 100vw; */
+}
+.link-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  margin-right: 20px;
 }
 
 img {
