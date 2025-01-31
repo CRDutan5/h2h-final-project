@@ -56,37 +56,41 @@ export const ExplorePlayers = () => {
         />
         <h1>Filtering System</h1>
 
-        <table className="user-list-table">
-          <thead>
-            <tr className="table-row-head">
-              <th>Player</th>
-              <th>Team</th>
-              <th>Zip</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredPlayers.length > 0 &&
-              filteredPlayers.map((player) => (
-                <tr className="table-row-body" key={player._id}>
-                  <td>
-                    <div className="player-div">
-                      <img
-                        src="https://media.istockphoto.com/id/855049932/photo/portrait-of-teenage-soccer-player.jpg?s=612x612&w=0&k=20&c=l8-6IrPO-RXw8eWxFwPYrSmXSVqlzISKN0J6dMSIfCo="
-                        alt=""
-                      />
-                      <p>{`${player.firstName} ${player.lastName}`}</p>
-                    </div>
-                  </td>
-                  <td>{player.teamId ? player.teamId : "Marvel Rivals"}</td>
-                  <td>{player.zipcode ? player.zipcode : "456789"}</td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
+        <div className="table-wrapper">
+          <table className="user-list-table">
+            <thead>
+              <tr className="table-row-head">
+                <th>Player</th>
+                <th>Team</th>
+                <th>Position</th>
+                <th>Zip</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredPlayers.length > 0 &&
+                filteredPlayers.map((player) => (
+                  <tr className="table-row-body" key={player._id}>
+                    <td>
+                      <div className="player-div">
+                        <img
+                          src="https://media.istockphoto.com/id/855049932/photo/portrait-of-teenage-soccer-player.jpg?s=612x612&w=0&k=20&c=l8-6IrPO-RXw8eWxFwPYrSmXSVqlzISKN0J6dMSIfCo="
+                          alt=""
+                        />
+                        <p>{`${player.firstName} ${player.lastName}`}</p>
+                      </div>
+                    </td>
+                    <td>{player.teamId ? player.teamId : "Free Agent"}</td>
+                    <td>{player.position ? player.position : "NA"}</td>
+                    <td>{player.zipcode ? player.zipcode : "456789"}</td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-      <div className="player-display-child-container">
+      {/* <div className="player-display-child-container">
         <h1>Yerrr</h1>
-      </div>
+      </div> */}
     </div>
   );
 };

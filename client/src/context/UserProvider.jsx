@@ -30,6 +30,7 @@ export const UserProvider = ({ children }) => {
       try {
         const decoded = JSON.parse(atob(token.split(".")[1]));
         const currentTime = Math.floor(Date.now() / 1000);
+        // Currently a valid token
         if (decoded.exp > currentTime) {
           setIsLoggedIn(true);
 
@@ -49,6 +50,7 @@ export const UserProvider = ({ children }) => {
             .catch((error) => console.log("Error fetching user data:", error));
         } else {
           setIsLoggedIn(false);
+          localStorage.removeItem("token");
         }
       } catch (error) {
         console.error("Invalid token:", error);

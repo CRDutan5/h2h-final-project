@@ -11,6 +11,8 @@ import { RegisterProvider } from "./context/RegisterProvider.jsx";
 import { ExplorePlayers } from "./components/exploreplayers/ExplorePlayers.jsx";
 import { AccountSettings } from "./components/accountSettings/AccountSettings.jsx";
 import { TwoFactorVerification } from "./TwoFactorVerification.jsx";
+import { TeamFinder } from "./components/team/TeamFinder.jsx";
+import { Leaderboards } from "./components/team/Leaderboards.jsx";
 
 export default function App() {
   const { userData, isLoggedIn, errorLogin, toggleTwoFactor } = useUser();
@@ -32,6 +34,9 @@ export default function App() {
             </RegisterProvider>
           }
         />
+        <Route path="/teamFinder" element={<TeamFinder />} />
+        <Route path="/leaderboards" element={<Leaderboards />} />
+
         <Route path="/explorePlayers" element={<ExplorePlayers />} />
         <Route
           path="/accountSettings"
