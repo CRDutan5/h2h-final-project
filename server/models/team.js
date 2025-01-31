@@ -22,10 +22,18 @@ const teamSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    points: {
+      type: Number,
+      default: 0,
+    },
     captainId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
+    },
+    matches: {
+      upcoming: [{ type: mongoose.Schema.Types.ObjectId, ref: "Matches" }],
+      history: [{ type: mongoose.Schema.Types.ObjectId, ref: "Matches" }],
     },
     members: {
       goalkeepers: {

@@ -14,6 +14,21 @@ export const createTeam = async (req, res) => {
     const { name, logo } = req.body;
     const captainId = req.user.userId;
 
+    const existingTeam = await Team.findOne({
+      $or: [
+        { "members.goalkeepers": captainId },
+        { "members.defenders": captainId },
+        { "members.midfielders": captainId },
+        { "members.forwards": captainId },
+      ],
+    });
+
+    if (existingTeam) {
+      return res
+        .status(400)
+        .json({ message: "User is already already part of a team." });
+    }
+
     const newTeam = new Team({
       name,
       logo,
