@@ -26,17 +26,6 @@
   flex-shrink: 0;
 }
 
-.table-wrapper {
-  flex: 1;
-  overflow-y: auto;
-  margin-top: 20px;
-}
-
-.user-list-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
 .filter-child-container {
   flex: 1;
   /* box-sizing: border-box; */
@@ -55,33 +44,6 @@
 .player-div {
   display: flex;
   align-items: center;
-}
-
-.player-div img {
-  margin-right: 20px;
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  border-radius: 25px;
-}
-
-.table-row-head th {
-  padding: 20px;
-  background-color: black;
-  color: rgb(10, 238, 10);
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  text-align: start;
-}
-
-.table-row-body {
-  background-color: black;
-  border-bottom: 1px solid gray;
-}
-
-.table-row-body td {
-  padding: 15px;
 }
 
 /* .table-row-body:last-child {

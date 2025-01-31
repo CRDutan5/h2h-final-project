@@ -66,7 +66,15 @@ export const getTeamById = async (req, res) => {
   }
 };
 
-export const getAllTeams = async () => {};
+export const getAllTeams = async (req, res) => {
+  try {
+    const allTeams = await Team.find();
+    res.status(200).json({ teams: allTeams });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error retrieving teams" });
+  }
+};
 
 // This can be reusable, I can use this for when a player wants to join a team by using the req.params. However, if the user is creating the team we can pass in the newly generated teamId in the parameters as a third optional parameter
 

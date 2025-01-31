@@ -1,0 +1,71 @@
+.team-finder-parent-container {
+  background-color: rgb(63, 60, 60);
+  display: flex;
+  height: calc(100vh - 10vh);
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.filter-wrapper {
+  display: flex;
+  flex: 1;
+  padding: 20px;
+  height: 60%;
+  /* background-color: black; */
+}
+
+.filter-content {
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: rgb(18, 17, 17);
+  height: 100%;
+  border-radius: 15px;
+  width: 100%;
+}
+
+.table-wrapper {
+  flex: 3;
+  overflow-y: auto;
+  margin-top: 20px;
+}
+
+.user-list-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-row-head th {
+  padding: 20px;
+  background-color: black;
+  color: rgb(10, 238, 10);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  text-align: start;
+}
+
+.table-row-body {
+  background-color: black;
+  border-bottom: 1px solid gray;
+}
+
+.table-row-body td {
+  padding: 15px;
+}
+
+.player-div img {
+  margin-right: 20px;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 25px;
+}
+
+.table-wrapper input {
+  padding: 15px;
+  width: 50%;
+  border-radius: 15px;
+  font-size: large;
+  flex-shrink: 0;
+  margin-bottom: 20px;
+}
