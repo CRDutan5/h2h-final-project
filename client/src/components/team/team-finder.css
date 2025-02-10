@@ -1,0 +1,138 @@
+/* Parent Container */
+.team-finder-parent-container {
+  background-color: rgb(63, 60, 60);
+  display: flex;
+  height: calc(100vh - 10vh);
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+/* Filter Section */
+.filter-wrapper {
+  display: flex;
+  flex: 1;
+  padding: 20px;
+  height: 60%;
+}
+
+.filter-content {
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: rgb(18, 17, 17);
+  height: 100%;
+  border-radius: 15px;
+  width: 100%;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Table Wrapper */
+.table-wrapper {
+  flex: 3;
+  overflow-y: auto;
+  margin-top: 20px;
+}
+
+/* Search & Create Button Wrapper */
+.search-create-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+/* Search Input */
+.table-wrapper input {
+  padding: 15px;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 15px;
+  font-size: 1rem;
+  border: none;
+  background-color: #333;
+  color: white;
+  outline: none;
+  transition: 0.3s;
+}
+
+.table-wrapper input::placeholder {
+  color: #bbb;
+}
+
+/* Create Team Button */
+.create-team-button {
+  background-color: greenyellow;
+  padding: 15px 20px;
+  border-radius: 15px;
+  color: black;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.create-team-button:hover {
+  background-color: #a8ff3e;
+  transform: scale(1.05);
+}
+
+/* Table */
+.user-list-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Table Header */
+.table-row-head th {
+  padding: 15px;
+  background-color: black;
+  color: rgb(10, 238, 10);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  text-align: left;
+}
+
+/* Table Rows */
+.table-row-body {
+  background-color: black;
+  border-bottom: 1px solid gray;
+}
+
+.table-row-body td {
+  padding: 15px;
+  color: white;
+}
+
+/* Team Info */
+.player-div {
+  display: flex;
+  align-items: center;
+}
+
+.player-div img {
+  margin-right: 15px;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid greenyellow;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .team-finder-parent-container {
+    flex-direction: column;
+  }
+
+  .search-create-wrapper {
+    flex-direction: column;
+  }
+
+  .table-wrapper input {
+    width: 100%;
+  }
+}

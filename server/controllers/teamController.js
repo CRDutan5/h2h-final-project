@@ -11,12 +11,30 @@ Create team has to:
 
 export const createTeam = async (req, res) => {
   try {
-    const { name, logo } = req.body;
+    const { name, logo, zip, homeColor, awayColor } = req.body;
     const captainId = req.user.userId;
+
+    const existingTeam = await Team.findOne({
+      $or: [
+        { "members.goalkeepers": captainId },
+        { "members.defenders": captainId },
+        { "members.midfielders": captainId },
+        { "members.forwards": captainId },
+      ],
+    });
+
+    if (existingTeam) {
+      return res
+        .status(400)
+        .json({ message: "User is already already part of a team." });
+    }
 
     const newTeam = new Team({
       name,
       logo,
+      zip,
+      homeColor,
+      awayColor,
       captainId,
     });
 
@@ -26,7 +44,8 @@ export const createTeam = async (req, res) => {
     const addPlayerResult = await addTeamPlayer(req, null, newTeam._id);
 
     if (!addPlayerResult.success) {
-      // Handle failure in adding the player
+      // Handle failure in adding the player, also delete the team if the user cant join for whatever reason
+      await Team.findByIdAndDelete(newTeam._id);
       return res.status(400).json({ message: addPlayerResult.message });
     }
 
@@ -51,7 +70,15 @@ export const getTeamById = async (req, res) => {
   }
 };
 
-export const getAllTeams = async () => {};
+export const getAllTeams = async (req, res) => {
+  try {
+    const allTeams = await Team.find();
+    res.status(200).json({ teams: allTeams });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error retrieving teams" });
+  }
+};
 
 // This can be reusable, I can use this for when a player wants to join a team by using the req.params. However, if the user is creating the team we can pass in the newly generated teamId in the parameters as a third optional parameter
 

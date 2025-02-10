@@ -10,6 +10,18 @@ const teamSchema = new mongoose.Schema(
     logo: {
       type: String,
     },
+    zip: {
+      type: String,
+      required: true,
+    },
+    homeColor: {
+      type: String,
+      required: true,
+    },
+    awayColor: {
+      type: String,
+      required: true,
+    },
     wins: {
       type: Number,
       default: 0,
@@ -22,10 +34,18 @@ const teamSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    points: {
+      type: Number,
+      default: 0,
+    },
     captainId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
+    },
+    matches: {
+      upcoming: [{ type: mongoose.Schema.Types.ObjectId, ref: "Matches" }],
+      history: [{ type: mongoose.Schema.Types.ObjectId, ref: "Matches" }],
     },
     members: {
       goalkeepers: {

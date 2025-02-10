@@ -45,6 +45,11 @@ export const ExplorePlayers = () => {
 
   return (
     <div className="explore-players-parent-container">
+      <div className="filter-child-container">
+        <div className="filter-content">
+          <p>filtering</p>
+        </div>
+      </div>
       <div className="explore-child-container">
         <input
           type="text"
@@ -54,9 +59,7 @@ export const ExplorePlayers = () => {
           value={searchInput}
           onChange={handleSearchInputChange}
         />
-        <h1>Filtering System</h1>
-
-        <div className="table-wrapper">
+        {/* <div className="table-wrapper">
           <table className="user-list-table">
             <thead>
               <tr className="table-row-head">
@@ -86,11 +89,25 @@ export const ExplorePlayers = () => {
                 ))}
             </tbody>
           </table>
+        </div> */}
+        <div className="wrapper">
+          <div className="list-users">
+            {filteredPlayers.length > 0 &&
+              filteredPlayers.map((player) => (
+                <div key={player._id} className="list-user-card">
+                  <img
+                    src="https://media.istockphoto.com/id/855049932/photo/portrait-of-teenage-soccer-player.jpg?s=612x612&w=0&k=20&c=l8-6IrPO-RXw8eWxFwPYrSmXSVqlzISKN0J6dMSIfCo="
+                    alt=""
+                  />
+                  <p>{`${player.firstName} ${player.lastName}`}</p>
+                  <p>{player.teamId ? player.teamId : "Free Agent"}</p>
+                  <p>{player.position ? player.position : "NA"}</p>
+                  <p>{player.zipcode ? player.zipcode : "456789"}</p>
+                </div>
+              ))}
+          </div>
         </div>
       </div>
-      {/* <div className="player-display-child-container">
-        <h1>Yerrr</h1>
-      </div> */}
     </div>
   );
 };

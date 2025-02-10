@@ -7,7 +7,7 @@
 }
 
 .explore-child-container {
-  flex: 1;
+  flex: 3;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -18,60 +18,32 @@
 
 .explore-child-container input {
   padding: 15px;
-  width: 80%;
+  margin-left: 20px;
+  width: 50%;
   border-radius: 15px;
   font-size: large;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   flex-shrink: 0;
 }
 
-.table-wrapper {
+.filter-child-container {
   flex: 1;
-  overflow-y: auto;
-  margin-top: 20px;
-}
-
-.user-list-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.player-display-child-container {
-  flex: 1;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   padding: 20px;
+  height: 60%;
+}
+
+.filter-content {
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: rgb(18, 17, 17);
+  height: 100%;
+  border-radius: 15px;
 }
 
 .player-div {
   display: flex;
   align-items: center;
-}
-
-.player-div img {
-  margin-right: 20px;
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  border-radius: 25px;
-}
-
-.table-row-head th {
-  padding: 20px;
-  background-color: black;
-  color: rgb(10, 238, 10);
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  text-align: start;
-}
-
-.table-row-body {
-  background-color: black;
-  border-bottom: 1px solid gray;
-}
-
-.table-row-body td {
-  padding: 15px;
 }
 
 /* .table-row-body:last-child {
@@ -97,4 +69,47 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+/* ////////////////////// */
+.wrapper {
+  flex: 1;
+  overflow-y: auto;
+  margin-top: 20px;
+  padding: 0 10px; /* Add some padding if needed */
+}
+
+.list-users {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
+}
+
+.list-user-card {
+  min-width: 200px; /* Ensures cards won't shrink too much */
+  max-width: 300px;
+  width: 100%; /* Allows flexibility and responsiveness */
+  box-sizing: border-box;
+  margin: 10px; /* Adds some space between cards */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: black;
+  padding: 30px;
+  overflow-x: auto;
+  border-radius: 15px;
+}
+
+.list-user-card p {
+  text-align: center;
+  margin: 5px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.list-user-card img {
+  border-radius: 100%;
 }
