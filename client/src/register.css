@@ -1,82 +1,110 @@
+/* 🌑 Full Page Background */
 .register-container {
   display: flex;
-  flex-direction: row;
-  height: calc(100vh - 30vh);
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #121212; /* Deep Black */
 }
 
-.register-image-container {
-  width: 50vw;
-  /* padding: 40px; */
-}
-
-.register-image-container,
+/* 🟩 Form Card */
 .register-form-container {
-  width: 50vw;
-  padding: 40px;
-  box-sizing: border-box; /* Include padding and border within the width */
-}
-
-.register-image-container img {
-  height: 100%;
   width: 100%;
+  max-width: 420px;
+  padding: 30px;
+  background: #1a1a1a; /* Dark Grey */
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.2); /* Subtle Neon Glow */
+  text-align: center;
 }
 
-.register-form-container {
-  border-left-width: 2px;
-  border-left-style: solid;
-  border-color: black;
+/* 📝 Form Title */
+.register-form h1 {
+  color: #0f0; /* Neon Green */
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
 }
 
-.register-form {
-  display: flex;
-  flex-direction: column;
-  row-gap: 5px;
-}
-
-.register-form input {
-  width: 100%; /* Inputs will span the full width of the form container */
-  border-radius: 15px;
-  padding: 15px;
-  border: 2px solid #ccc;
-  margin-bottom: 10px; /* Add spacing between inputs */
-  box-sizing: border-box; /* Ensure padding doesn't exceed the container width */
-  color: black;
-  font-size: large;
-}
-
+/* 🔳 Input Fields */
+.register-form input,
 .register-form select {
-  -webkit-appearance: none;
+  width: 100%;
+  padding: 12px;
+  margin: 12px 0;
+  border: 2px solid #2e2e2e; /* Muted Dark Grey */
+  background: #222; /* Darker Grey */
+  color: white;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: 0.3s ease-in-out;
+}
+
+/* ✨ Input Hover/Focus */
+.register-form input:focus,
+.register-form select:focus {
+  border-color: #00ff7f; /* Bright Green Glow */
+  box-shadow: 0 0 10px rgba(0, 255, 127, 0.5);
+}
+
+/* 📌 Select Field */
+.register-form select {
   appearance: none;
-  padding: 15px;
-  border-radius: 15px;
-  border: 2px solid #ccc;
-  font-size: large;
-  color: gray;
+  color: white;
 }
 
-.register-container h1 {
-  color: black;
-}
-
-.fieldset-container * {
-  color: black;
+/* ✅ Checkbox Section */
+.fieldset-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px 0;
+  color: white;
+  font-size: 14px;
 }
 
 .fieldset-child-container {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  /* justify-content: center; */
-  column-gap: 8px;
+  gap: 10px;
 }
 
 .fieldset-child-container input {
-  margin: 0; /* Reset margin */
-  padding: 0; /* Reset padding */
-  width: auto; /* Reset the width to auto or adjust as needed */
-  /* Add any additional specific styles you need */
+  width: 18px;
+  height: 18px;
+  accent-color: #0f0; /* Neon Green Checkbox */
 }
 
-fieldset {
+/* 🚀 Register Button */
+.button {
+  width: 100%;
+  padding: 12px;
+  background: #0f0; /* Neon Green */
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
   border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: 0.3s ease-in-out;
+}
+
+/* 🎯 Button Hover */
+.button:hover {
+  background: white;
+  color: black;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+/* 📱 Mobile Responsive */
+@media (max-width: 480px) {
+  .register-form-container {
+    padding: 20px;
+  }
+
+  .register-form h1 {
+    font-size: 20px;
+  }
 }

@@ -11,7 +11,7 @@ Create team has to:
 
 export const createTeam = async (req, res) => {
   try {
-    const { name, logo } = req.body;
+    const { name, logo, zip, homeColor, awayColor } = req.body;
     const captainId = req.user.userId;
 
     const existingTeam = await Team.findOne({
@@ -32,6 +32,9 @@ export const createTeam = async (req, res) => {
     const newTeam = new Team({
       name,
       logo,
+      zip,
+      homeColor,
+      awayColor,
       captainId,
     });
 
@@ -41,7 +44,8 @@ export const createTeam = async (req, res) => {
     const addPlayerResult = await addTeamPlayer(req, null, newTeam._id);
 
     if (!addPlayerResult.success) {
-      // Handle failure in adding the player
+      // Handle failure in adding the player, also delete the team if the user cant join for whatever reason
+      await Team.findByIdAndDelete(newTeam._id);
       return res.status(400).json({ message: addPlayerResult.message });
     }
 

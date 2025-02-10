@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./team-finder.css";
+import { useUser } from "../../context/UserProvider";
+import { Link } from "react-router-dom";
 
 export const TeamFinder = () => {
   const [allTeams, setAllTeams] = useState([]);
   const [filteredTeams, setFilteredTeams] = useState([]);
   const [searchInput, setSearchInput] = useState("");
+
+  const { userData } = useUser();
 
   useEffect(() => {
     const fetchAllTeams = async () => {
@@ -39,6 +43,8 @@ export const TeamFinder = () => {
     setSearchInput(e.target.value);
   };
 
+  console.log(userData);
+
   return (
     <div className="team-finder-parent-container">
       <div className="filter-wrapper">
@@ -47,12 +53,26 @@ export const TeamFinder = () => {
         </div>
       </div>
       <div className="table-wrapper">
-        <input
-          type="text"
-          placeholder="Search teams by name..."
-          onChange={handleSearchInputChange}
-          value={searchInput}
-        />
+        <div className="search-create-wrapper">
+          <input
+            type="text"
+            placeholder="Search teams by name..."
+            onChange={handleSearchInputChange}
+            value={searchInput}
+          />
+          {userData.teamId === null && (
+            <div
+              className="search-create-wrapper"
+              style={{ marginBottom: "0px" }}
+            >
+              <p>OR</p>
+              <Link to="/createTeam">
+                <button className="create-team-button">Create New Team</button>
+              </Link>
+            </div>
+          )}
+        </div>
+
         <table className="user-list-table">
           <thead>
             <tr className="table-row-head">

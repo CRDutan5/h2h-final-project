@@ -10,6 +10,18 @@ const teamSchema = new mongoose.Schema(
     logo: {
       type: String,
     },
+    zip: {
+      type: String,
+      required: true,
+    },
+    homeColor: {
+      type: String,
+      required: true,
+    },
+    awayColor: {
+      type: String,
+      required: true,
+    },
     wins: {
       type: Number,
       default: 0,
