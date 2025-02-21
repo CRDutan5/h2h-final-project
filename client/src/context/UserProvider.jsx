@@ -7,11 +7,7 @@ export function useUser() {
 }
 
 export const UserProvider = ({ children }) => {
-  const [userData, setUserData] = useState({
-    email: "",
-    firstName: "",
-    lastName: "",
-  });
+  const [userData, setUserData] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [errorLogin, setErrorLogin] = useState(null);
